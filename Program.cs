@@ -1,8 +1,19 @@
+using InventoryUI.Clients;
+using InventoryUI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+var mockDataUrl = builder.Configuration.GetValue<string>("MockDataUrl");
+
+builder.Services.AddHttpClient<IInventoryRequestsClient, InventoryRequestsClient>(
+    (client) => client.BaseAddress = new Uri(mockDataUrl)
+);
+
+builder.Services.AddTransient<IInventoryService, InventoryService>();
 
 var app = builder.Build();
 
@@ -16,7 +27,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 
 app.MapControllerRoute(
     name: "default",

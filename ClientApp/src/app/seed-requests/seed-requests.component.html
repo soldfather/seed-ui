@@ -1,6 +1,6 @@
 <h1 id="tableLabel">Seed Requests</h1>
 
-<p>Seed packaging requesets and the corresponding seed inventory.</p>
+<p>Seed packaging requests and the corresponding seed inventory.</p>
 
 <p *ngIf="!requests"><em>Loading...</em></p>
 
@@ -10,15 +10,19 @@
       <th>Request Id</th>
       <th>Seed Id</th>
       <th>Seed Name</th>
-      <th>Request Kernels</th>
+      <th>Requested Kernels</th>
+      <th>Available Kernels</th>
+      <th>Sufficient Inventory</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let request of requests">
-      <td>{{ request.date }}</td>
-      <td>{{ request.temperatureC }}</td>
-      <td>{{ request.temperatureF }}</td>
-      <td>{{ request.summary }}</td>
+    <tr *ngFor="let request of requests" [ngClass]="{'insufficientRow':!request.sufficientInventory}">
+      <td>{{ request.requestId }}</td>
+      <td>{{ request.seedId }}</td>
+      <td>{{ request.seedName }}</td>
+      <td>{{ request.requestedKernels }}</td>
+      <td>{{ request.availableKernels }}</td>
+      <td>{{ request.sufficientInventory }}</td>
     </tr>
   </tbody>
 </table>

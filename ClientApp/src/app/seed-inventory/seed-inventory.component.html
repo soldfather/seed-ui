@@ -1,0 +1,26 @@
+<h1 id="tableLabel">Seed Inventory</h1>
+
+<p>Seed inventory with requests for each seed.</p>
+
+<p *ngIf="!inventory"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="inventory">
+  <thead>
+    <tr>
+      <th>Seed Id</th>
+      <th>Seed Name</th>
+      <th>Requested Kernels</th>
+      <th>Available Kernels</th>
+      <th>Sufficient Inventory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let seed of inventory" [ngClass]="{'insufficientRow':!seed.sufficientInventory}">
+      <td>{{ seed.seedId }}</td>
+      <td>{{ seed.seedName }}</td>
+      <td>{{ seed.requestedKernels }}</td>
+      <td>{{ seed.availableKernels }}</td>
+      <td>{{ seed.sufficientInventory }}</td>
+    </tr>
+  </tbody>
+</table>
