@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Seed Requests</h1>
+
+<p>Seed packaging requesets and the corresponding seed inventory.</p>
+
+<p *ngIf="!requests"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="requests">
+  <thead>
+    <tr>
+      <th>Request Id</th>
+      <th>Seed Id</th>
+      <th>Seed Name</th>
+      <th>Request Kernels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of requests">
+      <td>{{ request.date }}</td>
+      <td>{{ request.temperatureC }}</td>
+      <td>{{ request.temperatureF }}</td>
+      <td>{{ request.summary }}</td>
+    </tr>
+  </tbody>
+</table>
